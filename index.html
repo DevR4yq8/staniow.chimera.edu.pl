@@ -66,33 +66,77 @@
       background: var(--section-bg);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 18px 20px 14px 20px;
-      margin: 0 auto;
-      max-width: 800px;
+      padding: 18px 20px 16px 20px;
+      margin: 0 auto 0.8em auto;
+      max-width: 700px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
     }
     .prompt-title {
       color: var(--accent);
-      font-size: 1.13rem;
+      font-size: 1.09rem;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 9px;
       text-align: center;
+      letter-spacing: 0.5px;
+    }
+    .prompt-content-container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 0;
+      margin-top: 0;
     }
     .prompt-content {
       background: #10181d;
       color: #f0f8ff;
-      padding: 13px 12px;
-      border-radius: 10px;
       font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
-      font-size: 1.01em;
-      margin-top: 6px;
-      word-break: break-word;
-      text-align: left;
+      font-size: 1em;
+      border-radius: 8px;
+      padding: 9px 8px;
+      width: 100%;
+      min-height: 90px;
+      max-height: 260px;
+      resize: vertical;
+      overflow: auto;
+      border: 1px solid #2a3443;
+      transition: box-shadow 0.12s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+      outline: none;
+      white-space: pre;
+    }
+    .copy-btn {
+      background: var(--accent);
+      color: #181f2a;
+      border: none;
+      border-radius: 5px;
+      padding: 7px 15px;
+      font-size: 0.97em;
+      font-weight: 600;
+      cursor: pointer;
+      margin-left: 4px;
+      transition: background 0.18s;
+      box-shadow: 0 1px 6px rgba(13,202,240,0.11);
+    }
+    .copy-btn:hover {
+      background: #45eafc;
+    }
+    .copied {
+      color: var(--accent);
+      margin-left: 8px;
+      font-size: 0.95em;
+      font-weight: 500;
+      transition: color 0.21s;
     }
     .rankings {
       display: flex;
       gap: var(--gap);
       justify-content: center;
       flex-wrap: wrap;
+      margin-top: 0.3em;
     }
     .ranking {
       background: var(--card-bg);
@@ -225,6 +269,11 @@
       }
       .prompt-section {
         padding: 12px 4vw 10px 4vw;
+        max-width: 98vw;
+      }
+      .prompt-content {
+        font-size: 0.97em;
+        max-height: 300px;
       }
     }
   </style>
@@ -240,7 +289,8 @@
 
     <section class="prompt-section">
       <div class="prompt-title">Specjalny prompt do wykorzystania:</div>
-      <pre class="prompt-content" id="specialPrompt">
+      <div class="prompt-content-container">
+        <textarea class="prompt-content" id="specialPrompt" rows="9" readonly>
 Jesteś AI specjalizującą się w tworzeniu prostych stron internetowych (HTML, CSS, JS) na podstawie dostarczonych materiałów.
 
 Twoim zadaniem jest przetworzenie zdjęcia lub instrukcji tekstowych użytkownika i wygenerowanie kompletnego kodu strony internetowej w jednym pliku .html.
@@ -368,7 +418,10 @@ Rozpoznane kolory: ... (lub 'brak kolorów - strona czarno-biała')
 
 Wymagany skrypt: ... (lub 'brak skryptów')
 Czy taki układ i zawartość odpowiadają Twoim oczekiwaniom i mogę przejść do generowania kodu?"
-      </pre>
+        </textarea>
+        <button class="copy-btn" onclick="copyPrompt()">Kopiuj</button>
+        <span class="copied" id="copiedMsg" style="display:none;">Skopiowano!</span>
+      </div>
     </section>
 
     <section class="rankings">
@@ -403,9 +456,10 @@ Czy taki układ i zawartość odpowiadają Twoim oczekiwaniom i mogę przejść 
     <section class="gallery">
       <div class="gallery-title">Najlepsze prace AI <span style="font-size:0.9em; font-weight:400;">(galeria)</span></div>
       <div class="gallery-grid">
-        <img class="gallery-img" src="source.png" alt="praca AI 1">
-        <img class="gallery-img" src="gpt-5-thinking.png" alt="praca AI 2">
-        <img class="gallery-img" src="sonar2.png" alt="praca AI 3">
+        <img class="gallery-img" src="gallery1.jpg" alt="praca AI 1">
+        <img class="gallery-img" src="gallery2.jpg" alt="praca AI 2">
+        <img class="gallery-img" src="gallery3.jpg" alt="praca AI 3">
+        <img class="gallery-img" src="gallery4.jpg" alt="praca AI 4">
       </div>
     </section>
     <section class="original-section">
@@ -416,5 +470,17 @@ Czy taki układ i zawartość odpowiadają Twoim oczekiwaniom i mogę przejść 
       <a class="download-link" href="staniow.zip" download>Pobierz plik: staniow.zip</a>
     </div>
   </main>
+  <script>
+    function copyPrompt() {
+      const ta = document.getElementById("specialPrompt");
+      ta.select();
+      ta.setSelectionRange(0, 99999); // mobile
+      document.execCommand("copy");
+      document.getElementById("copiedMsg").style.display = "inline";
+      setTimeout(() => {
+        document.getElementById("copiedMsg").style.display = "none";
+      }, 1700);
+    }
+  </script>
 </body>
 </html>
