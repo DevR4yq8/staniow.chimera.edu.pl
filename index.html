@@ -456,9 +456,9 @@ Czy taki układ i zawartość odpowiadają Twoim oczekiwaniom i mogę przejść 
     <section class="gallery">
       <div class="gallery-title">Najlepsze prace AI <span style="font-size:0.9em; font-weight:400;">(galeria)</span></div>
       <div class="gallery-grid">
-        <img class="gallery-img" src="source.png" alt="praca AI 1">
-        <img class="gallery-img" src="gpt-5-thinking.png" alt="praca AI 2">
-        <img class="gallery-img" src="sonar2.png" alt="praca AI 3">
+        <img class="gallery-img" src="source.png" data-full="source.png" alt="praca AI 1">
+        <img class="gallery-img" src="gpt-5-thinking.png" data-full="gpt-5-thinking.png" alt="praca AI 2">
+        <img class="gallery-img" src="sonar2.png" data-full="sonar2.png" alt="praca AI 3">
       </div>
     </section>
     <section class="original-section">
@@ -481,5 +481,23 @@ Czy taki układ i zawartość odpowiadają Twoim oczekiwaniom i mogę przejść 
       }, 1700);
     }
   </script>
+  <!-- Modal na duże zdjęcie -->
+<div id="imgModal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(16,24,32,0.97); align-items:center; justify-content:center;">
+  <img id="modalImg" style="max-width:92vw; max-height:92vh; border-radius:15px; box-shadow:0 4px 32px #000;" alt="powiększone AI"/>
+</div>
+<script>
+document.querySelectorAll('.gallery-img').forEach(function(img) {
+  img.style.cursor = "pointer";
+  img.addEventListener('click', function() {
+    var src = img.getAttribute('data-full') || img.src;
+    document.getElementById('modalImg').src = src;
+    document.getElementById('imgModal').style.display = 'flex';
+  });
+});
+document.getElementById('imgModal').addEventListener('click', function(e) {
+  // Zamknij tylko gdy klikniesz poza obrazem
+  if (e.target === this) this.style.display = 'none';
+});
+</script>
 </body>
 </html>
