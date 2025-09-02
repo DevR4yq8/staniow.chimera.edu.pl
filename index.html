@@ -62,6 +62,32 @@
       flex-direction: column;
       gap: var(--gap);
     }
+    .prompt-section {
+      background: var(--section-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px 20px 14px 20px;
+      margin: 0 auto;
+      max-width: 800px;
+    }
+    .prompt-title {
+      color: var(--accent);
+      font-size: 1.13rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .prompt-content {
+      background: #10181d;
+      color: #f0f8ff;
+      padding: 13px 12px;
+      border-radius: 10px;
+      font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+      font-size: 1.01em;
+      margin-top: 6px;
+      word-break: break-word;
+      text-align: left;
+    }
     .rankings {
       display: flex;
       gap: var(--gap);
@@ -88,23 +114,21 @@
       color: var(--accent);
       letter-spacing: 1px;
     }
-.ranking-list {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding-left: 2em; /* <-- to poprawia numerację */
-}
-
+    .ranking-list {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-left: 2em; /* Miejsce na numerację */
+    }
     .ranking-list li {
       background: rgba(255,255,255,0.06);
       border-radius: 10px;
-      margin: 0;
-      padding: 8px 12px;
+      margin-left: 0;
+      padding: 8px 12px 8px 0.5em;
       font-size: 1.07rem;
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      margin-left: 0;
-  padding-left: 0.5em;
+      list-style-position: inside;
     }
     .info {
       margin: 0 auto;
@@ -199,6 +223,9 @@
       .ranking {
         max-width: 100%;
       }
+      .prompt-section {
+        padding: 12px 4vw 10px 4vw;
+      }
     }
   </style>
 </head>
@@ -210,6 +237,15 @@
     Perplexity Pro na 1 rok za ok. 10 zł do zdobycia na G2A! Dostęp do różnych modeli AI bez limitu z * – tylko dla nowych użytkowników.
   </div>
   <main class="container">
+
+    <section class="prompt-section">
+      <div class="prompt-title">Specjalny prompt do wykorzystania:</div>
+      <pre class="prompt-content" id="specialPrompt">
+# PRZYKŁADOWY PROMPT:
+Napisz analizę i skomentuj krok po kroku rozwiązanie poniższego zadania programistycznego. Wskaż ważne zasady, pułapki lub wzorce i wyjaśnij ich zastosowanie.
+      </pre>
+    </section>
+
     <section class="rankings">
       <div class="ranking">
         <div class="ranking-title">Ranking „Bez Promptu”</div>
