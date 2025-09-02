@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>staniow.chimera.edu.pl</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --main-bg: #181f2a;
+      --accent: #0dcaf0;
+      --section-bg: #232e3e;
+      --text-light: #f3f6f9;
+      --card-bg: #232e3e;
+      --radius: 18px;
+      --shadow: 0 4px 18px rgba(0,0,0,0.16);
+      --gap: 32px;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    }
+    body {
+      background: var(--main-bg);
+      color: var(--text-light);
+      min-height: 100vh;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: var(--section-bg);
+      padding: 16px 0;
+      box-shadow: var(--shadow);
+    }
+    .site-name {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent);
+    }
+    .offer {
+      background-color: #10bce8;
+      color: #101820;
+      text-align: center;
+      padding: 14px 20px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: var(--radius);
+      margin: 18px auto 16px auto;
+      max-width: 800px;
+      box-shadow: var(--shadow);
+    }
+    .container {
+      flex: 1;
+      width: 100%;
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 20px 8px 60px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap);
+    }
+    .rankings {
+      display: flex;
+      gap: var(--gap);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .ranking {
+      background: var(--card-bg);
+      flex: 1 1 320px;
+      min-width: 300px;
+      max-width: 400px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px 12px 18px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .ranking-title {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+.ranking-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 2em; /* <-- to poprawia numerację */
+}
+
+    .ranking-list li {
+      background: rgba(255,255,255,0.06);
+      border-radius: 10px;
+      margin: 0;
+      padding: 8px 12px;
+      font-size: 1.07rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      margin-left: 0;
+  padding-left: 0.5em;
+    }
+    .info {
+      margin: 0 auto;
+      background: var(--section-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 12px 20px;
+      text-align: center;
+      font-size: 1.09rem;
+      color: var(--accent);
+      font-weight: 500;
+      max-width: 800px;
+    }
+    .gallery {
+      background: var(--section-bg);
+      padding: 20px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin: 0 auto;
+    }
+    .gallery-title {
+      font-size: 1.12rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+    }
+    .gallery-img {
+      background: #101820;
+      border-radius: 10px;
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border: 1px solid #232e3e;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .original-section {
+      margin: 0 auto;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      max-width: 760px;
+    }
+    .original-title {
+      color: var(--accent);
+      font-size: 1.11rem;
+      font-weight: 600;
+      margin-bottom: 9px;
+    }
+    .original-img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      margin-top: 6px;
+    }
+    .download-block {
+      text-align: center;
+      margin: 0 auto;
+      margin-top: 18px;
+    }
+    .download-link {
+      color: #fff;
+      background-color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 13px 26px;
+      font-size: 1.08rem;
+      border-radius: 30px;
+      transition: background-color 0.2s;
+      box-shadow: var(--shadow);
+      display: inline-block;
+      margin-top: 10px;
+    }
+    .download-link:hover {
+      background-color: #12e7ef;
+      color: #161a1d;
+    }
+    @media (max-width: 800px) {
+      .container {
+        padding: 6px 2vw 40px 2vw;
+      }
+      .rankings {
+        flex-direction: column;
+        gap: 18px;
+      }
+      .ranking {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="site-name">staniow.chimera.edu.pl</div>
+  </header>
+  <div class="offer">
+    Perplexity Pro na 1 rok za ok. 10 zł do zdobycia na G2A! Dostęp do różnych modeli AI bez limitu z * – tylko dla nowych użytkowników.
+  </div>
+  <main class="container">
+    <section class="rankings">
+      <div class="ranking">
+        <div class="ranking-title">Ranking „Bez Promptu”</div>
+        <ol class="ranking-list">
+          <li>Najlepszy <span style="color:var(--accent); font-size:0.98em;">(Only Perplexity)</span></li>
+          <li>Sonar <span style="color:var(--accent); font-size:0.98em;">(Only Perplexity)</span></li>
+          <li>Grok 4</li>
+          <li>Gemini 2.5 Pro</li>
+          <li>Claude 4 Sonnet</li>
+        </ol>
+      </div>
+      <div class="ranking">
+        <div class="ranking-title">Ranking „Ze Specjalnym Promptem”</div>
+        <ol class="ranking-list">
+          <li>GPT-5 Thinking <span style="color:var(--accent); font-size:0.98em;">(Only ChatGPT+ także Perplexity)</span></li>
+          <li>Sonar <span style="color:var(--accent); font-size:0.98em;">(Only Perplexity)</span></li>
+          <li>Labolatorium <span style="color:var(--accent); font-size:0.98em;">(Only Perplexity Pro)</span></li>
+          <li>Claude 4 Thinking</li>
+          <li>Grok 4</li>
+          <li>o3 <span style="color:var(--accent); font-size:0.98em;">(Only ChatGPT+ także Perplexity)</span></li>
+          <li>Najlepszy <span style="color:var(--accent); font-size:0.98em;">(Only Perplexity)</span></li>
+          <li>Claude 4 Sonnet</li>
+          <li>Gemini 2.5 Pro</li>
+        </ol>
+      </div>
+    </section>
+    <div class="info">
+      Średnio AI radzą sobie o 70% lepiej z zastosowaniem specjalnego prompta!
+    </div>
+    <section class="gallery">
+      <div class="gallery-title">Najlepsze prace AI <span style="font-size:0.9em; font-weight:400;">(galeria)</span></div>
+      <div class="gallery-grid">
+        <img class="gallery-img" src="gallery1.jpg" alt="praca AI 1">
+        <img class="gallery-img" src="gallery2.jpg" alt="praca AI 2">
+        <img class="gallery-img" src="gallery3.jpg" alt="praca AI 3">
+        <img class="gallery-img" src="gallery4.jpg" alt="praca AI 4">
+      </div>
+    </section>
+    <section class="original-section">
+      <div class="original-title">Oryginał</div>
+      <img src="oryginal.jpg" alt="Oryginalna strona/screen" class="original-img">
+    </section>
+    <div class="download-block">
+      <a class="download-link" href="staniow.zip" download>Pobierz plik: staniow.zip</a>
+    </div>
+  </main>
+</body>
+</html>
