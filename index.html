@@ -15,129 +15,66 @@
       --shadow: 0 4px 18px rgba(0,0,0,0.16);
       --gap: 32px;
     }
-    * {
-      box-sizing: border-box;
-      margin: 0; padding: 0;
-      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI','Roboto',Arial,sans-serif; }
+    body { background: var(--main-bg); color: var(--text-light); min-height: 100vh; line-height: 1.6; display: flex; flex-direction: column; position: relative; }
+
+    /* Pełnoekranowe tło 3D */
+    #bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;              /* tło */
+      overflow: hidden;
+      pointer-events: none;    /* nie blokuje kliknięć */
     }
-    body {
-      background: var(--main-bg);
-      color: var(--text-light);
-      min-height: 100vh;
-      line-height: 1.6;
-      display: flex;
-      flex-direction: column;
+    /* Subtelny „wodny znak” CHIMERA */
+    .chimera-word{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform: translate(-50%,-50%) rotateX(14deg) rotateY(-18deg);
+      font-size: clamp(72px, 22vw, 360px);
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.04);
+      text-shadow:
+        0 1px 0 rgba(255,255,255,0.03),
+        0 2px 0 rgba(255,255,255,0.025),
+        0 3px 0 rgba(255,255,255,0.02),
+        0 10px 20px rgba(0,0,0,0.25);
+      animation: chimeraFloat 18s ease-in-out infinite alternate;
+      user-select: none;
+      pointer-events: none;
+      white-space: nowrap;
     }
-    header {
-      background: var(--section-bg);
-      padding: 16px 0;
-      box-shadow: var(--shadow);
+    @keyframes chimeraFloat{
+      0%   { transform: translate(-50%,-52%) rotateX(12deg) rotateY(-15deg); }
+      100% { transform: translate(-50%,-48%) rotateX(18deg) rotateY(-24deg); }
     }
-    .site-name {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: var(--accent);
-    }
-    /* .offer usunięte z HTML; styl może pozostać lub zostać skasowany w razie potrzeby */
-    .offer {
-      background-color: #10bce8;
-      color: #101820;
-      text-align: center;
-      padding: 14px 20px;
-      font-size: 1.1rem;
-      font-weight: bold;
-      border-radius: var(--radius);
-      margin: 18px auto 16px auto;
-      max-width: 800px;
-      box-shadow: var(--shadow);
-    }
-    .container {
-      flex: 1;
-      width: 100%;
-      max-width: 1050px;
-      margin: 0 auto;
-      padding: 20px 8px 60px 8px;
-      display: flex;
-      flex-direction: column;
-      gap: var(--gap);
-    }
-    .prompt-section {
-      background: var(--section-bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 18px 20px 16px 20px;
-      margin: 0 auto 0.8em auto;
-      max-width: 700px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-    }
-    .prompt-title, .todo-title {
-      color: var(--accent);
-      font-size: 1.09rem;
-      font-weight: 600;
-      margin-bottom: 9px;
-      text-align: center;
-      letter-spacing: 0.5px;
-    }
-    .prompt-content-container {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 0;
-      margin-top: 0;
-    }
-    .prompt-content {
-      background: #10181d;
-      color: #f0f8ff;
-      font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
-      font-size: 1em;
-      border-radius: 8px;
-      padding: 9px 8px;
-      width: 100%;
-      min-height: 90px;
-      max-height: 260px;
-      resize: vertical;
-      overflow: auto;
-      border: 1px solid #2a3443;
-      transition: box-shadow 0.12s;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.09);
-      outline: none;
-      white-space: pre;
-    }
-    .copy-btn {
-      background: var(--accent);
-      color: #181f2a;
-      border: none;
-      border-radius: 5px;
-      padding: 7px 15px;
-      font-size: 0.97em;
-      font-weight: 600;
-      cursor: pointer;
-      margin-left: 4px;
-      transition: background 0.18s;
-      box-shadow: 0 1px 6px rgba(13,202,240,0.11);
-    }
-    .copy-btn:hover {
-      background: #45eafc;
-    }
-    .copied {
-      color: var(--accent);
-      margin-left: 8px;
-      font-size: 0.95em;
-      font-weight: 500;
-      transition: color 0.21s;
-    }
-    /* Rankingi usunięte z HTML */
+
+    header, main, .info { position: relative; z-index: 1; } /* treść ponad tłem */
+
+    header { background: var(--section-bg); padding: 16px 0; box-shadow: var(--shadow); }
+    .site-name { text-align: center; font-size: 2rem; font-weight: 700; letter-spacing: 2px; color: var(--accent); }
+
+    .offer { background-color: #10bce8; color: #101820; text-align: center; padding: 14px 20px; font-size: 1.1rem; font-weight: bold; border-radius: var(--radius); margin: 18px auto 16px auto; max-width: 800px; box-shadow: var(--shadow); }
+
+    .container { flex: 1; width: 100%; max-width: 1050px; margin: 0 auto; padding: 20px 8px 60px 8px; display: flex; flex-direction: column; gap: var(--gap); }
+
+    .prompt-section { background: var(--section-bg); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px 20px 16px 20px; margin: 0 auto 0.8em auto; max-width: 700px; width: 100%; display: flex; flex-direction: column; align-items: stretch; }
+    .prompt-title, .todo-title { color: var(--accent); font-size: 1.09rem; font-weight: 600; margin-bottom: 9px; text-align: center; letter-spacing: 0.5px; }
+
+    .prompt-content-container { width: 100%; display: flex; align-items: center; gap: 12px; margin-bottom: 0; margin-top: 0; }
+    .prompt-content { background: #10181d; color: #f0f8ff; font-family: 'Fira Mono','Consolas','Menlo',monospace; font-size: 1em; border-radius: 8px; padding: 9px 8px; width: 100%; min-height: 90px; max-height: 260px; resize: vertical; overflow: auto; border: 1px solid #2a3443; transition: box-shadow 0.12s; box-shadow: 0 2px 8px rgba(0,0,0,0.09); outline: none; white-space: pre; }
+
+    .copy-btn { background: var(--accent); color: #181f2a; border: none; border-radius: 5px; padding: 7px 15px; font-size: 0.97em; font-weight: 600; cursor: pointer; margin-left: 4px; transition: background 0.18s; box-shadow: 0 1px 6px rgba(13,202,240,0.11); }
+    .copy-btn:hover { background: #45eafc; }
+    .copied { color: var(--accent); margin-left: 8px; font-size: 0.95em; font-weight: 500; transition: color 0.21s; }
+
     .rankings { display: none; }
     .ranking { display: none; }
 
     .info {
-      margin: 0 auto;
+      margin: 12px auto 0 auto; /* było 0 auto; dodany odstęp u góry */
       background: var(--section-bg);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
@@ -148,111 +85,40 @@
       font-weight: 500;
       max-width: 800px;
     }
-    .gallery {
-      background: var(--section-bg);
-      padding: 20px;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      margin: 0 auto;
-    }
-    .gallery-title {
-      font-size: 1.12rem;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 8px;
-      letter-spacing: 1px;
-    }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 12px;
-    }
-    .gallery-img {
-      background: #101820;
-      border-radius: 10px;
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
-      border: 1px solid #232e3e;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-    .original-section {
-      margin: 0 auto;
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 20px;
-      max-width: 760px;
-    }
-    .original-title {
-      color: var(--accent);
-      font-size: 1.11rem;
-      font-weight: 600;
-      margin-bottom: 9px;
-    }
-    .original-img {
-      max-width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-      margin-top: 6px;
-    }
-    .download-block {
-      text-align: center;
-      margin: 0 auto;
-      margin-top: 18px;
-    }
-    .download-link {
-      color: #fff;
-      background-color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-      padding: 13px 26px;
-      font-size: 1.08rem;
-      border-radius: 30px;
-      transition: background-color 0.2s;
-      box-shadow: var(--shadow);
-      display: inline-block;
-      margin-top: 10px;
-    }
-    .download-link:hover {
-      background-color: #12e7ef;
-      color: #161a1d;
-    }
-    /* Prosta lista do bloku DO ROZWINIĘCIA */
-    .todo-list {
-      margin-top: 6px;
-      padding-left: 1.2em;
-    }
-    .todo-list li {
-      background: rgba(255,255,255,0.06);
-      border-radius: 10px;
-      padding: 8px 12px;
-      font-size: 1.02rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      list-style: disc inside;
-      margin-bottom: 8px;
-    }
+
+    .gallery { background: var(--section-bg); padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow); margin: 0 auto; }
+    .gallery-title { font-size: 1.12rem; color: var(--accent); font-weight: 600; margin-bottom: 8px; letter-spacing: 1px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+    .gallery-img { background: #101820; border-radius: 10px; width: 100%; height: 120px; object-fit: cover; border: 1px solid #232e3e; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    .original-section { margin: 0 auto; background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; max-width: 760px; }
+    .original-title { color: var(--accent); font-size: 1.11rem; font-weight: 600; margin-bottom: 9px; }
+    .original-img { max-width: 100%; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); margin-top: 6px; }
+
+    .download-block { text-align: center; margin: 0 auto; margin-top: 18px; }
+    .download-link { color: #fff; background-color: var(--accent); text-decoration: none; font-weight: 600; padding: 13px 26px; font-size: 1.08rem; border-radius: 30px; transition: background-color 0.2s; box-shadow: var(--shadow); display: inline-block; margin-top: 10px; }
+    .download-link:hover { background-color: #12e7ef; color: #161a1d; }
+
+    .todo-list { margin-top: 6px; padding-left: 1.2em; }
+    .todo-list li { background: rgba(255,255,255,0.06); border-radius: 10px; padding: 8px 12px; font-size: 1.02rem; box-shadow: 0 2px 6px rgba(0,0,0,0.05); list-style: disc inside; margin-bottom: 8px; }
+
     @media (max-width: 800px) {
-      .container {
-        padding: 6px 2vw 40px 2vw;
-      }
-      .prompt-section {
-        padding: 12px 4vw 10px 4vw;
-        max-width: 98vw;
-      }
-      .prompt-content {
-        font-size: 0.97em;
-        max-height: 300px;
-      }
+      .container { padding: 6px 2vw 40px 2vw; }
+      .prompt-section { padding: 12px 4vw 10px 4vw; max-width: 98vw; }
+      .prompt-content { font-size: 0.97em; max-height: 300px; }
     }
   </style>
 </head>
 <body>
+  <!-- TŁO 3D -->
+  <div id="bg">
+    <div class="chimera-word">CHIMERA</div>
+  </div>
+
   <header>
     <div class="site-name">staniow.chimera.edu.pl</div>
   </header>
 
-  <!-- Przeniesiony komunikat w miejsce dawnej oferty -->
   <div class="info">
     Średnio AI radzą sobie o 70% lepiej z zastosowaniem specjalnego prompta!
   </div>
@@ -342,7 +208,6 @@ Faktyczne Dane ze Zdjęcia: Przepisuj dane (np. "1 cal = 2.5cm") dokładnie tak,
       </div>
     </section>
 
-    <!-- Zamiast rankingów: blok DO ROZWINIĘCIA -->
     <section class="prompt-section">
       <div class="todo-title">DO ROZWINIĘCIA:</div>
       <ul class="todo-list">
@@ -374,12 +239,10 @@ Faktyczne Dane ze Zdjęcia: Przepisuj dane (np. "1 cal = 2.5cm") dokładnie tak,
     function copyPrompt() {
       const ta = document.getElementById("specialPrompt");
       ta.select();
-      ta.setSelectionRange(0, 99999); // mobile
+      ta.setSelectionRange(0, 99999);
       document.execCommand("copy");
       document.getElementById("copiedMsg").style.display = "inline";
-      setTimeout(() => {
-        document.getElementById("copiedMsg").style.display = "none";
-      }, 1700);
+      setTimeout(() => { document.getElementById("copiedMsg").style.display = "none"; }, 1700);
     }
   </script>
 
@@ -387,6 +250,7 @@ Faktyczne Dane ze Zdjęcia: Przepisuj dane (np. "1 cal = 2.5cm") dokładnie tak,
   <div id="imgModal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(16,24,32,0.97); align-items:center; justify-content:center;">
     <img id="modalImg" style="max-width:92vw; max-height:92vh; border-radius:15px; box-shadow:0 4px 32px #000;" alt="powiększone AI"/>
   </div>
+
   <script>
     document.querySelectorAll('.gallery-img').forEach(function(img) {
       img.style.cursor = "pointer";
@@ -399,6 +263,28 @@ Faktyczne Dane ze Zdjęcia: Przepisuj dane (np. "1 cal = 2.5cm") dokładnie tak,
     document.getElementById('imgModal').addEventListener('click', function(e) {
       if (e.target === this) this.style.display = 'none';
     });
+  </script>
+
+  <!-- Three.js + Vanta.NET (tło 3D) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+  <script>
+    let vantaEffect;
+    document.addEventListener('DOMContentLoaded', function () {
+      vantaEffect = VANTA.NET({
+        el: "#bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: true,
+        color: 0x0dcaf0,
+        backgroundColor: 0x181f2a,
+        points: 10.0,
+        maxDistance: 22.0,
+        spacing: 16.0,
+        showDots: false
+      });
+    });
+    window.addEventListener('unload', () => { if (vantaEffect && vantaEffect.destroy) vantaEffect.destroy(); });
   </script>
 </body>
 </html>
