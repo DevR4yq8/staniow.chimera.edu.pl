@@ -17,7 +17,6 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI','Roboto',Arial,sans-serif; }
     body { background: var(--main-bg); color: var(--text-light); min-height: 100vh; line-height: 1.6; display: flex; flex-direction: column; position: relative; }
-
     /* Pełnoekranowe tło 3D */
     #bg {
       position: fixed;
@@ -50,29 +49,20 @@
       0%   { transform: translate(-50%,-52%) rotateX(12deg) rotateY(-15deg); }
       100% { transform: translate(-50%,-48%) rotateX(18deg) rotateY(-24deg); }
     }
-
     header, main, .info { position: relative; z-index: 1; } /* treść ponad tłem */
-
     header { background: var(--section-bg); padding: 16px 0; box-shadow: var(--shadow); }
     .site-name { text-align: center; font-size: 2rem; font-weight: 700; letter-spacing: 2px; color: var(--accent); }
-
     .offer { background-color: #10bce8; color: #101820; text-align: center; padding: 14px 20px; font-size: 1.1rem; font-weight: bold; border-radius: var(--radius); margin: 18px auto 16px auto; max-width: 800px; box-shadow: var(--shadow); }
-
     .container { flex: 1; width: 100%; max-width: 1050px; margin: 0 auto; padding: 20px 8px 60px 8px; display: flex; flex-direction: column; gap: var(--gap); }
-
     .prompt-section { background: var(--section-bg); border-radius: var(--radius); box-shadow: var(--shadow); padding: 18px 20px 16px 20px; margin: 0 auto 0.8em auto; max-width: 700px; width: 100%; display: flex; flex-direction: column; align-items: stretch; }
     .prompt-title, .todo-title { color: var(--accent); font-size: 1.09rem; font-weight: 600; margin-bottom: 9px; text-align: center; letter-spacing: 0.5px; }
-
     .prompt-content-container { width: 100%; display: flex; align-items: center; gap: 12px; margin-bottom: 0; margin-top: 0; }
     .prompt-content { background: #10181d; color: #f0f8ff; font-family: 'Fira Mono','Consolas','Menlo',monospace; font-size: 1em; border-radius: 8px; padding: 9px 8px; width: 100%; min-height: 90px; max-height: 260px; resize: vertical; overflow: auto; border: 1px solid #2a3443; transition: box-shadow 0.12s; box-shadow: 0 2px 8px rgba(0,0,0,0.09); outline: none; white-space: pre; }
-
     .copy-btn { background: var(--accent); color: #181f2a; border: none; border-radius: 5px; padding: 7px 15px; font-size: 0.97em; font-weight: 600; cursor: pointer; margin-left: 4px; transition: background 0.18s; box-shadow: 0 1px 6px rgba(13,202,240,0.11); }
     .copy-btn:hover { background: #45eafc; }
     .copied { color: var(--accent); margin-left: 8px; font-size: 0.95em; font-weight: 500; transition: color 0.21s; }
-
     .rankings { display: none; }
     .ranking { display: none; }
-
     .info {
       margin: 12px auto 0 auto; /* było 0 auto; dodany odstęp u góry */
       background: var(--section-bg);
@@ -85,23 +75,18 @@
       font-weight: 500;
       max-width: 800px;
     }
-
     .gallery { background: var(--section-bg); padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow); margin: 0 auto; }
     .gallery-title { font-size: 1.12rem; color: var(--accent); font-weight: 600; margin-bottom: 8px; letter-spacing: 1px; }
     .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
     .gallery-img { background: #101820; border-radius: 10px; width: 100%; height: 120px; object-fit: cover; border: 1px solid #232e3e; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-
     .original-section { margin: 0 auto; background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; max-width: 760px; }
     .original-title { color: var(--accent); font-size: 1.11rem; font-weight: 600; margin-bottom: 9px; }
     .original-img { max-width: 100%; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); margin-top: 6px; }
-
     .download-block { text-align: center; margin: 0 auto; margin-top: 18px; }
     .download-link { color: #fff; background-color: var(--accent); text-decoration: none; font-weight: 600; padding: 13px 26px; font-size: 1.08rem; border-radius: 30px; transition: background-color 0.2s; box-shadow: var(--shadow); display: inline-block; margin-top: 10px; }
     .download-link:hover { background-color: #12e7ef; color: #161a1d; }
-
     .todo-list { margin-top: 6px; padding-left: 1.2em; }
     .todo-list li { background: rgba(255,255,255,0.06); border-radius: 10px; padding: 8px 12px; font-size: 1.02rem; box-shadow: 0 2px 6px rgba(0,0,0,0.05); list-style: disc inside; margin-bottom: 8px; }
-
     @media (max-width: 800px) {
       .container { padding: 6px 2vw 40px 2vw; }
       .prompt-section { padding: 12px 4vw 10px 4vw; max-width: 98vw; }
@@ -114,15 +99,12 @@
   <div id="bg">
     <div class="chimera-word">CHIMERA</div>
   </div>
-
   <header>
     <div class="site-name">staniow.chimera.edu.pl</div>
   </header>
-
   <div class="info">
     Średnio AI radzą sobie o 70% lepiej z zastosowaniem specjalnego prompta!
   </div>
-
   <main class="container">
     <section class="prompt-section">
       <div class="prompt-title">Specjalny prompt do wykorzystania:</div>
@@ -153,13 +135,11 @@ Użycie znaczników semantycznych:
 <aside>: Używaj dla paneli bocznych, treści powiązanych, ale niebędących częścią głównego artykułu (np. reklamy, dodatkowe linki).
 <section>: Używaj do grupowania powiązanych tematycznie treści wewnątrz <main>. Każda sekcja powinna mieć swój nagłówek (np. <h2>, <h3>).
 <article>: Używaj dla samodzielnych fragmentów treści, które można by opublikować osobno (np. post na blogu, artykuł).
-
 C. Rola <div> i <span> – Wyjątki, a nie reguła:
 Znaczniki <div> możesz używać TYLKO I WYŁĄCZNIE w dwóch przypadkach:
 Gdy żaden inny semantyczny znacznik nie pasuje do grupowania elementów (np. chcesz stworzyć elastyczny kontener dla dwóch elementów <section> wewnątrz <main>, aby ułożyć je obok siebie za pomocą CSS Flexbox).
 Jako "wrapper" lub "container" dla całej strony wewnątrz <body>, jeśli jest to konieczne dla ogólnego stylowania (np. <div class="container">).
 <span>: używaj do stylizowania małych fragmentów tekstu wewnątrz innych elementów.
-
 Elementy Tekstowe: Dokładnie przepisz wszystkie widoczne elementy, używając odpowiednich znaczników: nagłówki (<h1>-<h6>), akapity (<p>), listy (<ul>/<ol> z elementami <li>), itp.
 4. Styl Kodu (Ogólne)
 Prostota i Przejrzystość: Kod ma być napisany w sposób prosty i zrozumiały, jak dla ucznia 3/4 klasy technikum informatycznego.
@@ -174,7 +154,6 @@ Detale Wizualne:
 Podkreślenia (text-decoration: underline;).
 Ramki (border: 1px solid black;).
 Tło w kratkę na zdjęciu – ignoruj.
-
 Czcionki: Używaj domyślnej czcionki przeglądarki, chyba że polecenie wskazuje na inną.
 Centrowanie: Główne sekcje (<header>, <main>, <footer>) powinny być domyślnie wyśrodkowane w poziomie.
 6. JavaScript
@@ -192,11 +171,9 @@ Górna sekcja zostanie oznaczona jako <header> i będzie zawierać tytuł: '...'
 Menu nawigacyjne zostanie oznaczone jako <nav> z linkami: '...', '...'
 Główna treść strony zostanie objęta tagiem <main>, który będzie zawierał X elementów <section>.
 Stopka zostanie oznaczona jako <footer> z tekstem: '...'
-
 Rozpoznane kolory: ... (lub 'brak kolorów')
 Wymagany skrypt: ... (lub 'brak skryptów')
 Potwierdzenie: Czy ten wybór tagów semantycznych jest poprawny i czy mogę przejść do generowania pełnego kodu HTML?"`
-
 9. Pozostałe Zasady
 Obsługa Błędów i Poprawek: Jeśli użytkownik wskaże błąd, przyjmij jego uwagi. Użytkownik ma zawsze rację.
 Wersjonowanie (Na Życzenie): Twórz wizualnie różne wersje kodu o tej samej funkcjonalności.
@@ -208,9 +185,15 @@ Faktyczne Dane ze Zdjęcia: Przepisuj dane (np. "1 cal = 2.5cm") dokładnie tak,
       </div>
     </section>
 
+    <!-- ZMIENIONA SEKCJA: DO ROZWINIĘCIA -->
     <section class="prompt-section">
       <div class="todo-title">DO ROZWINIĘCIA:</div>
       <ul class="todo-list">
+        <!-- DODANE LINKI DO PLIKÓW -->
+        <li><a href="https://staniow.chimera.edu.pl/baltykv3">baltykv3.html</a></li>
+        <li><a href="https://staniow.chimera.edu.pl/kalkulatorv3">kalkulatorv3.html</a></li>
+
+        <!-- ISTNIEJĄCE POZYCJE -->
         <li>GPT-5 Family - NIE NADAJE SIĘ PONIEWAŻ NARZUCA &lt;div&gt; MIMO IŻ W PROMPCIE WYRAŹNIE JEST ZAZNACZONE ŻEBY TEGO NIE ROBIŁ</li>
         <li>Grok 4 - Inteligencją trochę gorszy od GPT-5 Family, ale przynajmniej nie wpierdala &lt;div&gt; wszędzie gdzie się da</li>
       </ul>
@@ -224,17 +207,14 @@ Faktyczne Dane ze Zdjęcia: Przepisuj dane (np. "1 cal = 2.5cm") dokładnie tak,
         <img class="gallery-img" src="sonar2.png" data-full="sonar2.png" alt="praca AI 3">
       </div>
     </section>
-
     <section class="original-section">
       <div class="original-title">Oryginał</div>
       <img src="oryginal.png" alt="Oryginalna strona/screen" class="original-img">
     </section>
-
     <div class="download-block">
       <a class="download-link" href="staniow.zip" download>Pobierz plik: staniow.zip</a>
     </div>
   </main>
-
   <script>
     function copyPrompt() {
       const ta = document.getElementById("specialPrompt");
@@ -245,12 +225,10 @@ Faktyczne Dane ze Zdjęcia: Przepisuj dane (np. "1 cal = 2.5cm") dokładnie tak,
       setTimeout(() => { document.getElementById("copiedMsg").style.display = "none"; }, 1700);
     }
   </script>
-
   <!-- Modal na duże zdjęcie -->
   <div id="imgModal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(16,24,32,0.97); align-items:center; justify-content:center;">
     <img id="modalImg" style="max-width:92vw; max-height:92vh; border-radius:15px; box-shadow:0 4px 32px #000;" alt="powiększone AI"/>
   </div>
-
   <script>
     document.querySelectorAll('.gallery-img').forEach(function(img) {
       img.style.cursor = "pointer";
@@ -264,7 +242,6 @@ Faktyczne Dane ze Zdjęcia: Przepisuj dane (np. "1 cal = 2.5cm") dokładnie tak,
       if (e.target === this) this.style.display = 'none';
     });
   </script>
-
   <!-- Three.js + Vanta.NET (tło 3D) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
