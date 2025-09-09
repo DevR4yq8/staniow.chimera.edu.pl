@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalkulator pola trójkąta</title>
+</head>
+<body>
+  <header>
+    <h1>Kalkulator pola trójkąta</h1>
+  </header>
+
+  <main>
+    <nav>
+      <button type="button" onclick="pokaz('wysokosc')">Podstawa i wysokość</button>
+      <button type="button" onclick="pokaz('boki')">Trzy boki (Heron)</button>
+    </nav>
+
+    <section id="sekcja-wysokosc">
+      <h2>Pole z podstawy i wysokości</h2>
+      <form>
+        <label>Podstawa (a): <input type="number" id="p2Podstawa" step="any" required></label>
+        <label>Wysokość (h): <input type="number" id="p2Wysokosc" step="any" required></label>
+        <button type="button" onclick="obliczPolePodstawa2()">Oblicz pole</button>
+      </form>
+      <p id="p2Wynik"></p>
+    </section>
+
+    <section id="sekcja-boki" hidden>
+      <h2>Pole ze wzoru Herona</h2>
+      <form>
+        <label>Bok a: <input type="number" id="p2A" step="any" required></label>
+        <label>Bok b: <input type="number" id="p2B" step="any" required></label>
+        <label>Bok c: <input type="number" id="p2C" step="any" required></label>
+        <button type="button" onclick="obliczPoleHeron2()">Oblicz pole</button>
+      </form>
+      <p id="p2HeronWynik"></p>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Kalkulator trójkąta | wersja 2
+  </footer>
+
+  <script>
+    function pokaz(tryb) {
+      document.getElementById('sekcja-wysokosc').hidden = tryb !== 'wysokosc';
+      document.getElementById('sekcja-boki').hidden = tryb !== 'boki';
+    }
+    function obliczPolePodstawa2() {
+      const a = parseFloat(document.getElementById('p2Podstawa').value);
+      const h = parseFloat(document.getElementById('p2Wysokosc').value);
+      if (isNaN(a) || isNaN(h) || a <= 0 || h <= 0) {
+        document.getElementById('p2Wynik').textContent = 'Podaj poprawne liczby dodatnie.';
+        return;
+      }
+      document.getElementById('p2Wynik').textContent = 'Pole trójkąta: ' + (0.5 * a * h);
+    }
+    function obliczPoleHeron2() {
+      const a = parseFloat(document.getElementById('p2A').value);
+      const b = parseFloat(document.getElementById('p2B').value);
+      const c = parseFloat(document.getElementById('p2C').value);
+      if (isNaN(a) || isNaN(b) || isNaN(c) || a <= 0 || b <= 0 || c <= 0) {
+        document.getElementById('p2HeronWynik').textContent = 'Podaj poprawne liczby dodatnie!';
+        return;
+      }
+      if (a + b <= c || a + c <= b || b + c <= a) {
+        document.getElementById('p2HeronWynik').textContent = 'Błędne długości boków!';
+        return;
+      }
+      const p = (a + b + c) / 2;
+      const pole = Math.sqrt(p * (p - a) * (p - b) * (p - c));
+      document.getElementById('p2HeronWynik').textContent = 'Pole trójkąta: ' + pole;
+    }
+  </script>
+</body>
+</html>
