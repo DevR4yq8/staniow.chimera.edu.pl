@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Morze Bałtyckie – polska perła przyrody</title>
+  <meta name="viewport" content="width=1100, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0;   padding: 0;
+      background: linear-gradient(to bottom, #e3f0fd 0%, #bbdefb 100%);
+      font-family: Verdana, Arial, sans-serif;
+      color: #121339;
+    }
+    .container {
+      width: 1080px;
+      min-height: 100vh;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      background: #e3f0fd;
+      box-shadow: 0 0 28px #95b9d9a9;
+      border-radius: 0 0 18px 18px;
+    }
+    header {
+      background: linear-gradient(90deg, #4170b7 50%, #8dc2ff 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: 2.1em;
+      padding: 32px 32px 20px 32px;
+      border-radius: 18px 18px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid #1976d2;
+    }
+    #welcome {
+      color: #cfe7ff;
+      font-weight: 600;
+      font-size: 0.85em;
+      margin-right: 18px;
+    }
+    main {
+      display: flex;
+      flex-direction: row;
+      min-height: 550px;
+      background: linear-gradient(120deg, #bbdefb 65%, #e3f0fd 100%);
+    }
+    nav {
+      width: 170px;
+      border-right: 2px solid #457fd7;
+      background: #2875be;
+      padding: 34px 6px 0 11px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-stretch;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    nav li {
+      margin-bottom: 26px;
+    }
+    nav a {
+      background: #b3d5fc;
+      color: #174c90;
+      border-left: 8px solid #478be3;
+      border-radius: 4px;
+      padding: 9px 14px 9px 18px;
+      display: block;
+      font-size: 1.14em;
+      letter-spacing: 1px;
+      font-weight: 600;
+      text-decoration: none;
+      position: relative;
+      transition: color 0.17s, background 0.18s;
+    }
+    nav a:before {
+      content: "🌊 ";
+      font-size: 1.09em;
+      position: absolute;
+      left: 0;
+      top: 6px;
+    }
+    nav a.active, nav a:hover {
+      background: #1976d2;
+      color: #fff;
+      border-left: 8px solid #b3e1fd;
+    }
+    .main-content {
+      flex: 1;
+      padding: 32px 40px 26px 40px;
+      min-width: 0;
+    }
+    aside {
+      width: 210px;
+      background: #e6f1fd;
+      border-left: 2px solid #478be3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 35px 10px 0 10px;
+    }
+    .aside-card {
+      background: #cfe7ff;
+      box-shadow: 0 0 7px #a3cdeeb5;
+      border-radius: 10px;
+      margin-bottom: 17px;
+      padding: 12px 13px;
+      width: 92%;
+      text-align: center;
+      border: 1px solid #1976d2;
+    }
+    .aside-card a {
+      color: #1976d2;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+    /* --- GŁÓWNY GRADIENT BOX --- */
+    section.box {
+      background: linear-gradient(98deg, #b6d7fc 60%, #c7e8ff 100%);
+      border: 2px solid #6ab6ed;
+      border-radius: 13px;
+      box-shadow: 0 0 13px #95b9d9a4;
+      margin-bottom: 37px;
+      padding: 22px 18px 16px 28px;
+      color: #102432;
+    }
+
+    .gallery {
+      display: flex;
+      gap: 15px;
+      margin-top: 16px;
+    }
+    .img-thumb {
+      width: 100px;
+      height: 75px;
+      border: 2px solid #1976d2;
+      border-radius: 7px;
+      object-fit: cover;
+      cursor: pointer;
+      background: #b6d7fc;
+    }
+    /* --- Modalowy podgląd zdjęcia --- */
+    #img-modal-bg {
+      display: none;
+      position: fixed;
+      z-index: 88;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      background: rgba(21, 106, 220, 0.14);
+    }
+    #img-modal {
+      position: fixed;
+      display: none;
+      z-index: 99;
+      left: 50%; top: 53%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      border: 7px solid #1976d2;
+      border-radius: 12px;
+      box-shadow: 0 0 29px #095dac8b;
+      padding: 7px;
+    }
+    #img-modal img {
+      max-width: 55vw;
+      max-height: 55vh;
+      border-radius: 10px;
+      box-shadow: 0 0 12px #457fd7;
+    }
+    #img-modal span {
+      display: block;
+      color: #1976d2;
+      font-size: 1.18em;
+      text-align: right;
+      font-weight: bold;
+      margin-bottom: 2px;
+      cursor: pointer;
+    }
+    /* --- Formularz TEST --- */
+    .user-form {
+      background: #deeffb;
+      border: 2px solid #64b5f6;
+      border-radius: 10px;
+      padding: 24px 20px 18px 26px;
+      width: 340px;
+      margin: 16px 0 7px 5px;
+      box-shadow: 0 0 10px #b3e9fc61;
+    }
+    .user-form label {
+      display: inline-block;
+      width: 86px;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #1976d2;
+    }
+    .user-form input, .user-form select {
+      margin-bottom: 12px;
+      width: 170px;
+      padding: 5px 7px;
+      border: 1px solid #1976d2;
+      border-radius: 4px;
+      font-size: 1em;
+    }
+    .user-form input[type="radio"] {
+      width: unset;
+      margin-right: 6px;
+    }
+    .form-message {
+      color: #b71c1c;
+      font-weight: bold;
+      margin-top: 8px;
+      font-size: 1em;
+    }
+    .form-result {
+      background: #bbdefb;
+      border: 1px solid #90caf9;
+      border-radius: 7px;
+      margin-top: 7px;
+      padding: 9px 6px;
+      color: #275e8d;
+      font-size: 1.06em;
+    }
+    /* -- MODAL LOGOWANIA -- */
+    #login-modal {
+      position: fixed; left:0; top:0; width:100vw; height:100vh;
+      background: rgba(40, 96, 190, 0.19);
+      z-index: 1000;
+      display: flex;
+      align-items: center; justify-content: center;
+    }
+    #login-box {
+      background: #bbdefb;
+      border: 3px solid #1976d2;
+      padding: 32px 36px 24px 36px;
+      border-radius: 16px;
+      box-shadow: 0 0 32px #1565c099;
+      min-width: 260px;
+    }
+    #login-box label {
+      display: block;
+      margin-bottom: 11px;
+      color: #1976d2;
+      font-size: 1.12em;
+    }
+    #login-box input[type="text"], #login-box input[type="password"] {
+      width: 93%;
+      padding: 8px 7px;
+      border: 1px solid #1976d2;
+      border-radius: 6px;
+      font-size: 1.08em;
+      margin-bottom: 18px;
+    }
+    #login-box button {
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 9px 30px;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+    #login-box button:hover {
+      background: #174c90;
+    }
+    footer {
+      width: 100%;
+      padding: 14px 0 13px 0;
+      background: linear-gradient(90deg, #4170b7 20%, #1976d2 100%);
+      color: #fff;
+      text-align: center;
+      font-size: 1.06em;
+      border-radius: 0 0 15px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      margin-bottom: 0;
+      letter-spacing: 1.5px;
+    }
+    .footer-data { margin: 0 26px; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <span style="font-weight:bolder;font-size:1.12em;">⚓ Morze Bałtyckie – polska perła przyrody</span>
+    <span id="welcome"></span>
+  </header>
+  <main>
+    <nav>
+      <ul>
+        <li><a href="#" id="nav-home" class="active">Strona główna</a></li>
+        <li><a href="#" id="nav-nature">Przyroda</a></li>
+        <li><a href="#" id="nav-tourism">Turystyka</a></li>
+        <li><a href="#" id="nav-test">Test</a></li>
+      </ul>
+    </nav>
+    <section class="main-content" id="section-home">
+      <section class="box">
+        <h2>O Morzu Bałtyckim</h2>
+        <p>
+          Morze Bałtyckie jest północną granicą Polski i jednocześnie jednym z najważniejszych akwenów Europy.  
+          Stanowi piękno i bogactwo przyrodnicze naszego kraju – szerokie plaże, klify, wydmy, unikalna fauna i flora.
+        </p>
+        <ul>
+          <li>Długość polskiej linii brzegowej – 440 km</li>
+          <li>Najważniejsze miasta: Gdańsk, Gdynia, Sopot, Kołobrzeg, Władysławowo</li>
+          <li>Obszar występowania fok, morświnów oraz licznych gatunków ptaków</li>
+        </ul>
+      </section>
+      <section class="box">
+        <h2>Galeria zdjęć</h2>
+        <div class="gallery">
+          <img class="img-thumb" src="https://upload.wikimedia.org/wikipedia/commons/8/80/Baltic_Sea_coast_Poland.jpg" data-full="https://upload.wikimedia.org/wikipedia/commons/8/80/Baltic_Sea_coast_Poland.jpg" alt="Wybrzeże Bałtyku" title="Wybrzeże Bałtyku">
+          <img class="img-thumb" src="https://upload.wikimedia.org/wikipedia/commons/5/52/Seal_on_Baltic_Sea.jpg" data-full="https://upload.wikimedia.org/wikipedia/commons/5/52/Seal_on_Baltic_Sea.jpg" alt="Foka szara" title="Foka szara">
+          <img class="img-thumb" src="https://upload.wikimedia.org/wikipedia/commons/2/25/Polish_cliff_Baltic.jpg" data-full="https://upload.wikimedia.org/wikipedia/commons/2/25/Polish_cliff_Baltic.jpg" alt="Klif Bałtycki" title="Klif Bałtycki">
+        </div>
+        <span style="font-size: 0.96em;color:#075394;">Kliknij miniaturę, by zobaczyć powiększone zdjęcie.</span>
+      </section>
+    </section>
+    <section class="main-content" id="section-nature" style="display:none;">
+      <section class="box">
+        <h2>Przyroda Karkonoszy</h2>
+        <p>
+          Karkonosze, choć są górami, wyróżniają się cenną wysokogórską przyrodą. Liczne rośliny i zwierzęta chronione, torfowiska, rzadkie motyle i unikalne formacje skalne stanowią prawdziwy skarb przyrodniczy Dolnego Śląska.
+        </p>
+        <ul>
+          <li>Najwyższy szczyt: Śnieżka (1603 m n.p.m.)</li>
+          <li>Wiele torfowisk, wodospadów i formacji skalnych</li>
+          <li>Znajdziesz tu m.in. muflony, rysie, kozice górskie i orła przedniego</li>
+        </ul>
+      </section>
+    </section>
+    <section class="main-content" id="section-tourism" style="display:none;">
+      <section class="box">
+        <h2>Turystyka w Karkonoszach</h2>
+        <p>
+          Region sprzyja turystyce pieszej, rowerowej, zimowej. Popularne atrakcje to Śnieżka, wodospady Kamieńczyka i Szklarki oraz malownicze miasteczka: Karpacz, Szklarska Poręba.
+        </p>
+        <ul>
+          <li>Liczne szlaki górskie i schroniska</li>
+          <li>Wyciągi narciarskie, parki linowe, wydarzenia kulturalne</li>
+          <li>Piękne widoki z górskich szczytów</li>
+        </ul>
+      </section>
+    </section>
+    <section class="main-content" id="section-test" style="display:none;">
+      <section class="box">
+        <h2>Test – Formularz użytkownika</h2>
+        <form class="user-form" id="user-form" autocomplete="off">
+          <label for="imie">Imię:</label>
+          <input type="text" id="imie" name="imie" maxlength="20" pattern="[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ\- ]+" required><br>
+          <label for="nazwisko">Nazwisko:</label>
+          <input type="text" id="nazwisko" name="nazwisko" maxlength="25" pattern="[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ\- ]+" required><br>
+          <label for="wiek">Wiek:</label>
+          <input type="text" id="wiek" name="wiek" maxlength="3" pattern="[0-9]{1,3}" required><br>
+          <label for="miasto">Miasto:</label>
+          <select id="miasto" name="miasto">
+            <option value="">Wybierz miasto</option>
+            <option value="Warszawa">Warszawa</option>
+            <option value="Gdańsk">Gdańsk</option>
+            <option value="Poznań">Poznań</option>
+            <option value="Wrocław">Wrocław</option>
+            <option value="Kraków">Kraków</option>
+            <option value="Szczecin">Szczecin</option>
+          </select><br>
+          <label>Płeć:</label>
+          <input type="radio" id="plec-m" name="plec" value="Mężczyzna" required><label for="plec-m" style="width:auto;font-weight:400;">Mężczyzna</label>
+          <input type="radio" id="plec-k" name="plec" value="Kobieta"><label for="plec-k" style="width:auto;font-weight:400;">Kobieta</label>
+          <input type="radio" id="plec-i" name="plec" value="Inna"><label for="plec-i" style="width:auto;font-weight:400;">Inna</label><br>
+          <button type="submit">Wyślij</button>
+          <div id="form-message" class="form-message"></div>
+        </form>
+        <div id="form-result" class="form-result" style="display:none;"></div>
+      </section>
+    </section>
+    <aside>
+      <div class="aside-card"><a href="https://pl.wikipedia.org/wiki/Morze_Ba%C5%82tyckie" target="_blank">Wikipedia – Morze Bałtyckie</a></div>
+      <div class="aside-card"><a href="https://balticseaphotonature.eu/" target="_blank">BalticSeaPhotoNature</a></div>
+      <div class="aside-card"><a href="https://naszbaltyk.pl/" target="_blank">Nasz Bałtyk</a></div>
+      <div class="aside-card"><a href="https://www.hel.uw.edu.pl" target="_blank">Stacja Morska Hel</a></div>
+      <div class="aside-card"><a href="https://baltyk.wwf.pl/" target="_blank">Bałtyk WWF</a></div>
+    </aside>
+  </main>
+  <footer>
+    <span class="footer-data">Data: <span id="current-date"></span></span>
+    <span class="footer-data">Ostatnia modyfikacja: <span id="mod-date"></span></span>
+  </footer>
+</div>
+<!-- MODAL LOGOWANIA -->
+<div id="login-modal">
+  <form id="login-box" autocomplete="off">
+    <label for="login-user">Login:</label>
+    <input type="text" id="login-user" name="login-user" required autocomplete="username"><br>
+    <label for="login-pass">Hasło:</label>
+    <input type="password" id="login-pass" name="login-pass" required autocomplete="current-password"><br>
+    <button type="submit">Zaloguj</button>
+    <div id="login-info" class="form-message"></div>
+  </form>
+</div>
+<!-- MODAL do podglądu zdjęcia -->
+<div id="img-modal-bg"></div>
+<div id="img-modal">
+  <span onclick="hideImgModal()" title="Zamknij">×</span>
+  <img src="" alt="Podgląd" id="img-modal-img">
+</div>
+<script>
+  // Nawigacja zakładek
+  function showSection(sectionId) {
+    document.querySelectorAll('.main-content').forEach(sec => sec.style.display = 'none');
+    document.getElementById(sectionId).style.display = 'block';
+    document.querySelectorAll("nav a").forEach(link => link.classList.remove("active"));
+    const map = { "section-home":"nav-home", "section-nature":"nav-nature", "section-tourism":"nav-tourism", "section-test":"nav-test" };
+    document.getElementById(map[sectionId]).classList.add("active");
+  }
+  document.getElementById("nav-home").onclick = () => { showSection("section-home"); return false;}
+  document.getElementById("nav-nature").onclick = () => { showSection("section-nature"); return false;}
+  document.getElementById("nav-tourism").onclick = () => { showSection("section-tourism"); return false;}
+  document.getElementById("nav-test").onclick = () => { showSection("section-test"); return false;}
+
+  // Logowanie-modal
+  function showWelcome() {
+    let user = sessionStorage.getItem("user");
+    document.getElementById("welcome").textContent = (user === "user") ? "Witaj, " + user + "!" : "";
+  }
+  const loginModal = document.getElementById("login-modal");
+  const loginBox = document.getElementById("login-box");
+  const loginInfo = document.getElementById("login-info");
+  if(sessionStorage.getItem("user") !== "user") {
+    loginModal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  } else {
+    loginModal.style.display = "none";
+    document.body.style.overflow = "auto";
+    showWelcome();
+  }
+  loginBox.onsubmit = function(e) {
+    e.preventDefault();
+    const user = document.getElementById("login-user").value;
+    const pass = document.getElementById("login-pass").value;
+    if(user==="user" && pass==="user") {
+      sessionStorage.setItem("user", "user");
+      loginModal.style.display = "none";
+      document.body.style.overflow = "auto";
+      showWelcome();
+    } else {
+      loginInfo.textContent = "Niepoprawny login lub hasło!";
+    }
+  };
+  showWelcome();
+
+  // Modal Galerii
+  function showImgModal(src) {
+    document.getElementById("img-modal-img").src = src;
+    document.getElementById("img-modal").style.display = "block";
+    document.getElementById("img-modal-bg").style.display = "block";
+  }
+  function hideImgModal() {
+    document.getElementById("img-modal").style.display = "none";
+    document.getElementById("img-modal-bg").style.display = "none";
+  }
+  document.querySelectorAll(".img-thumb").forEach(img => {
+    img.onclick = function() {
+      showImgModal(img.dataset.full);
+    }
+  });
+  document.getElementById("img-modal-bg").onclick = hideImgModal;
+
+  // Formularz walidacja
+  const userForm = document.getElementById("user-form");
+  const formMsg = document.getElementById("form-message");
+  const formRes = document.getElementById("form-result");
+  if(userForm) userForm.onsubmit = function(e) {
+    e.preventDefault();
+    const imie = document.getElementById("imie").value.trim();
+    const nazwisko = document.getElementById("nazwisko").value.trim();
+    const wiek = document.getElementById("wiek").value.trim();
+    const miasto = document.getElementById("miasto").value;
+    const plec = document.querySelector('input[name="plec"]:checked');
+    let valid = true;
+    let msg = "";
+    if(imie==="" || !/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ\- ]+$/.test(imie)) { msg += "Imię tylko litery. "; valid=false;}
+    if(nazwisko==="" || !/^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ\- ]+$/.test(nazwisko)) { msg += "Nazwisko tylko litery. "; valid=false;}
+    if(wiek==="" || isNaN(wiek) || wiek<1 || wiek>120) { msg += "Wiek liczba 1-120. "; valid=false;}
+    if(miasto==="") { msg += "Wybierz miasto. "; valid=false; }
+    if(!plec) { msg += "Wybierz płeć."; valid=false;}
+    if(valid) {
+      formMsg.textContent = "";
+      formRes.innerHTML = `<b>Dane użytkownika:</b><br>
+        Imię: ${imie}<br>
+        Nazwisko: ${nazwisko}<br>
+        Wiek: ${wiek}<br>
+        Miasto: ${miasto}<br>
+        Płeć: ${plec.value}`;
+      formRes.style.display = "block";
+    } else {
+      formMsg.textContent = msg;
+      formRes.style.display = "none";
+    }
+  };
+
+  // Stopka – aktualna data + data modyfikacji
+  function pad(x){return (x<10?"0":"")+x;}
+  const now = new Date();
+  document.getElementById("current-date").textContent =
+    pad(now.getDate())+"."+pad(now.getMonth()+1)+"."+now.getFullYear();
+  let modDate = document.lastModified.split(" ");
+  document.getElementById("mod-date").textContent = modDate[0];
+
+</script>
+</body>
+</html>
