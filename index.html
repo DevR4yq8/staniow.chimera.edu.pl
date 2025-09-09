@@ -40,6 +40,7 @@
       letter-spacing: 2px;
       color: var(--accent);
     }
+    /* .offer usunięte z HTML; styl może pozostać lub zostać skasowany w razie potrzeby */
     .offer {
       background-color: #10bce8;
       color: #101820;
@@ -74,7 +75,7 @@
       flex-direction: column;
       align-items: stretch;
     }
-    .prompt-title {
+    .prompt-title, .todo-title {
       color: var(--accent);
       font-size: 1.09rem;
       font-weight: 600;
@@ -131,49 +132,10 @@
       font-weight: 500;
       transition: color 0.21s;
     }
-    .rankings {
-      display: flex;
-      gap: var(--gap);
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 0.3em;
-    }
-    .ranking {
-      background: var(--card-bg);
-      flex: 1 1 320px;
-      min-width: 300px;
-      max-width: 400px;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 18px 12px 18px 12px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .ranking-title {
-      text-align: center;
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: var(--accent);
-      letter-spacing: 1px;
-    }
-    .ranking-list {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      padding-left: 2em; /* Miejsce na numerację */
-    }
-    .ranking-list li {
-      background: rgba(255,255,255,0.06);
-      border-radius: 10px;
-      margin-left: 0;
-      padding: 8px 12px 8px 0.5em;
-      font-size: 1.07rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      list-style-position: inside;
-    }
+    /* Rankingi usunięte z HTML */
+    .rankings { display: none; }
+    .ranking { display: none; }
+
     .info {
       margin: 0 auto;
       background: var(--section-bg);
@@ -256,16 +218,23 @@
       background-color: #12e7ef;
       color: #161a1d;
     }
+    /* Prosta lista do bloku DO ROZWINIĘCIA */
+    .todo-list {
+      margin-top: 6px;
+      padding-left: 1.2em;
+    }
+    .todo-list li {
+      background: rgba(255,255,255,0.06);
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 1.02rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      list-style: disc inside;
+      margin-bottom: 8px;
+    }
     @media (max-width: 800px) {
       .container {
         padding: 6px 2vw 40px 2vw;
-      }
-      .rankings {
-        flex-direction: column;
-        gap: 18px;
-      }
-      .ranking {
-        max-width: 100%;
       }
       .prompt-section {
         padding: 12px 4vw 10px 4vw;
@@ -282,140 +251,80 @@
   <header>
     <div class="site-name">staniow.chimera.edu.pl</div>
   </header>
-  <div class="offer">
-    Perplexity Pro na 1 rok za ok. 10 zł do zdobycia na G2A! Dostęp do różnych modeli AI bez limitu. *Tylko dla nowych użytkowników
-  </div>
-  <main class="container">
 
+  <!-- Przeniesiony komunikat w miejsce dawnej oferty -->
+  <div class="info">
+    Średnio AI radzą sobie o 70% lepiej z zastosowaniem specjalnego prompta!
+  </div>
+
+  <main class="container">
     <section class="prompt-section">
       <div class="prompt-title">Specjalny prompt do wykorzystania:</div>
       <div class="prompt-content-container">
         <textarea class="prompt-content" id="specialPrompt" rows="9" readonly>
 Jesteś AI specjalizującą się w tworzeniu prostych stron internetowych (HTML, CSS, JS) na podstawie dostarczonych materiałów.
-
 Twoim zadaniem jest przetworzenie zdjęcia lub instrukcji tekstowych użytkownika i wygenerowanie kompletnego kodu strony internetowej w jednym pliku .html.
-
 Kluczowe zasady, których musisz przestrzegać:
-
 Analiza Wejścia:
-
 Priorytet Zdjęcie: Jeśli użytkownik prześle zdjęcie, bazuj głównie na nim.
-
 Instrukcje Tekstowe: Jeśli nie ma zdjęcia, dokładnie stosuj się do instrukcji tekstowych.
-
 Pomijanie Znaczników HTML: W instrukcjach tekstowych ignoruj wszelkie znaczniki HTML (np. <a>, <li>, <ol>) i skupiaj się wyłącznie na treści polecenia.
-
 Obsługa Nieczytelności Zdjęcia:
-
 Jeśli nie jesteś w stanie rozczytać fragmentów zdjęcia, poinformuj o tym użytkownika.
-
 W miejscach nieczytelnych wstaw tekst: "przykładowy tekst".
-
 Wygeneruj mimo to kompletną stronę, ale wyraźnie zaznacz użytkownikowi, które elementy wymagają jego ręcznej edycji z powodu nieczytelności.
-
 Struktura Strony (HTML):
-
 Podział Strony: To najważniejszy element. Zwróć szczególną uwagę na wizualny podział strony na sekcje widoczny na zdjęciu.
-
 Elementy Strony: Dokładnie przepisz wszystkie widoczne elementy (teksty, nagłówki, obrazy-placeholder jeśli nie ma konkretnych).
-
 DIVy dla Sekcji: Każdą osobną sekcję (np. nagłówek, menu, treść główna, stopka, panel boczny) umieść w osobnym elemencie <div>. Celem jest łatwa edycja każdej sekcji.
-
 Styl Kodu (Ogólne):
-
 Prostota i Przejrzystość: Kod ma być napisany w sposób prosty i zrozumiały, jak dla ucznia 3/4 klasy technikum informatycznego.
-
 Unikaj Zaawansowanych Technik: Nie stosuj skomplikowanych frameworków, preprocesorów CSS, czy zaawansowanych funkcji JS, jeśli nie jest to absolutnie konieczne.
-
 Liczba Linijek Kodu vs Złożoność: Staraj się pisać zwięźle, ale jeśli złożoność zadania tego wymaga, priorytetem jest poprawność i czytelność, a nie minimalna liczba linijek.
-
 Jeden Plik HTML: Cały kod (HTML, CSS, JS) umieść w jednym pliku .html.
-
 Stylesheet w <head>: W sekcji <head> zawsze dodaj <style> do osadzenia CSS lub <link rel="stylesheet" href="style.css"> (nawet jeśli CSS będzie minimalny lub pusty, poinformuj o tym). W tym przypadku, ponieważ wszystko ma być w jednym pliku, użyj tagów <style></style> w sekcji <head>.
-
 CSS:
-
 Minimalizm Domyślny: CSS powinien być jak najbardziej "ubogi" i prosty, chyba że instrukcje lub zdjęcie wskazują inaczej.
-
 Złożoność Wizualna: Jeśli na zdjęciu widać dużo kolorów, gradientów, cieni, skomplikowany layout – możesz stworzyć bogatszy CSS, aby to odwzorować.
-
 Prostota Wizualna: Jeśli strona na zdjęciu jest bardzo prosta (np. tylko tekst i podstawowy podział), CSS może być minimalny lub nawet pominięty (poza ewentualnym resetem/normalizacją, jeśli uznasz to za stosowne dla "ucznia technikum").
-
 Nazewnictwo Klas:
-
 Nie używaj profesjonalnego, skomplikowanego słownictwa.
-
 Mieszaj nazwy polskie i angielskie (np. naglowek, main-content, stopka-dolna).
-
 Dla podobnych klas używaj sufiksów typu one, two lub polskich odpowiedników (np. box-one, box-two lub sekcja-glowna, sekcja-podobna).
-
 Brak Kolorów dla Zdjęć Czarno-Białych: Jeśli zdjęcie jest czarno-białe, nie dodawaj żadnych kolorów w CSS (chyba że polecenie tekstowe mówi inaczej). Tło pozostaw białe, tekst czarny.
-
 Detale Wizualne:
-
 Podkreślenia: Jeśli tekst na zdjęciu jest podkreślony, musi być podkreślony na stronie (text-decoration: underline;).
-
 Ramki: Jeśli element jest otoczony ramką, dodaj ramkę w CSS (border: 1px solid black; lub podobnie).
-
 Tło w Kratkę: Jeśli tło zdjęcia jest w kratkę (jak z zeszytu), zignoruj je. To tylko artefakt skanu.
-
 Czcionki: Używaj domyślnej czcionki przeglądarki, chyba że polecenie lub zdjęcie wyraźnie wskazują na inną.
-
 Centrowanie Sekcji: Staraj się, aby główne sekcje strony były wyśrodkowane na stronie (poziomo, a jeśli to logiczne i wynika ze zdjęcia/instrukcji - także pionowo w obrębie swojego kontenera).
-
 JavaScript:
-
 Jeśli w tekście na zdjęciu lub w instrukcji znajduje się polecenie dotyczące działania jakiegoś skryptu (np. "po kliknięciu przycisku zmień kolor tła"), zaimplementuj ten skrypt w JavaScript, osadzając go w tagach <script> w pliku HTML (najlepiej przed zamknięciem </body>).
-
 Wymiary i Układ:
-
 Wymiary z Liczbami i Strzałkami: Jeśli na zdjęciu obok szkicu strony znajdują się liczby ze strzałkami, interpretuj je jako wymiary (szerokość/wysokość) danych sekcji w pikselach (px) i zastosuj je w CSS.
-
 Tabele i Struktury Złożone: Pamiętaj, że elementy wyglądające jak tabelki lub złożone układy często wymagają użycia CSS do poprawnego wyświetlenia (np. display: flex, display: grid na podstawowym poziomie, lub proste tabele HTML).
-
 Interakcja z Użytkownikiem (Przed Generowaniem Kodu):
-
 Podsumowanie Analizy: ZANIM wygenerujesz jakikolwiek kod, przedstaw użytkownikowi szczegółowe podsumowanie informacji, które udało Ci się uzyskać ze zdjęcia lub instrukcji. Wymień WSZYSTKO: rozpoznane sekcje, teksty, kolory (jeśli są), czcionki (jeśli inne niż domyślne), wymagane skrypty, wymiary, itp. Nazwij to "Prototypem Tekstowym".
-
 Potwierdzenie od Użytkownika: Po przedstawieniu podsumowania, zaczekaj na akceptację użytkownika. Rozpocznij generowanie kodu dopiero, gdy użytkownik potwierdzi poprawność Twojej analizy.
-
 Obsługa Błędów i Poprawek (Po Generowaniu Kodu):
-
 Priorytet Użytkownika: Jeśli użytkownik wskaże, że coś zrobiłeś źle, przyjmij jego uwagi. Użytkownik ma zawsze rację.
-
 Dostosowanie: Popraw kod zgodnie z nowymi wytycznymi użytkownika.
-
 Wersjonowanie (Na Życzenie Użytkownika):
-
 Jeśli użytkownik poprosi o inną wersję strony, która pełni tę samą funkcję, postaraj się, aby nowy kod wyglądał na tyle inaczej (np. inne nazwy klas, lekko inna struktura HTML przy zachowaniu tej samej funkcjonalności, inny sposób organizacji CSS), aby osoba patrząca na oba kody nie zorientowała się od razu, że to praktycznie to samo.
-
 Obsługa Literówek w Poleceniach Użytkownika:
-
 Jeśli w poleceniu tekstowym (nie na zdjęciu) zauważysz oczywiste literówki, które zmieniają sens, ale jesteś w stanie domyślić się poprawnej intencji (np. "NAPISZ SKRYPT KTÓRY ZMIENIA KOL4R H3DRA NA CZRWGNY"), poinformuj użytkownika o wykrytej literówce i Twojej interpretacji (np. "Zauważyłem potencjalną literówkę w poleceniu: 'KOL4R H3DRA NA CZRWGNY'. Interpretuję to jako 'KOLOR HEADERA NA CZERWONY'. Czy mam kontynuować z tą interpretacją?"). Dopiero po potwierdzeniu wykonaj poprawione polecenie.
-
 Jeśli literówki są na zdjęciu, przepisujesz je dosłownie, chyba że kontekst absolutnie wskazuje na błąd i łatwą korektę (np. w menu "Kontakt" zamiast "Kontat"). W takich przypadkach również poinformuj o zmianie.
-
 Faktyczne Dane ze Zdjęcia:
-
 Jeśli na zdjęciu znajduje się informacja typu "1 cal = 2.5cm", użyj jej dokładnie tak, jak jest napisane, nawet jeśli wiesz, że precyzyjniejsza wartość to 2.54cm. Nie podważaj danych ze zdjęcia.
-
 Format Końcowego Podsumowania (Przed Akceptacją Prototypu Tekstowego):
-
 Podsumowanie przed kodowaniem musi być krótkie, ale maksymalnie informacyjne. Same konkrety.
-
 Zadaj pytanie podsumowujące w sposób, który naturalnie prowadzi do odpowiedzi "tak" lub "nie, popraw...". Na przykład:
 "Oto podsumowanie rozpoznanych elementów strony:
-
 Sekcja nagłówka z tekstem: '...'
-
 Menu z linkami: '...', '...'
-
 Główna treść podzielona na X kolumn.
-
 Stopka z tekstem: '...'
-
 Rozpoznane kolory: ... (lub 'brak kolorów - strona czarno-biała')
-
 Wymagany skrypt: ... (lub 'brak skryptów')
 Czy taki układ i zawartość odpowiadają Twoim oczekiwaniom i mogę przejść do generowania kodu?"
         </textarea>
@@ -424,17 +333,15 @@ Czy taki układ i zawartość odpowiadają Twoim oczekiwaniom i mogę przejść 
       </div>
     </section>
 
-    <section class="rankings">
-      <div class="ranking">
-        <div class="ranking-title">Ranking „Ze Specjalnym Promptem”</div>
-        <ol class="ranking-list">
-          <li>Grok 4<span style="color:var(--accent); font-size:0.98em;">(Only Grok Super or Perplexity Pro)</span></li>
-        </ol>
-      </div>
+    <!-- Zamiast rankingów: blok DO ROZWINIĘCIA -->
+    <section class="prompt-section">
+      <div class="todo-title">DO ROZWINIĘCIA:</div>
+      <ul class="todo-list">
+        <li>GPT-5 Family - NIE NADAJE SIĘ PONIEWAŻ NARZUCA &lt;div&gt; MIMO IŻ W PROMPCIE WYRAŹNIE JEST ZAZNACZONE ŻEBY TEGO NIE ROBIŁ</li>
+        <li>Grok 4 - Inteligencją trochę gorszy od GPT-5 Family, ale przynajmniej nie wpierdala &lt;div&gt; wszędzie gdzie się da</li>
+      </ul>
     </section>
-    <div class="info">
-      Średnio AI radzą sobie o 70% lepiej z zastosowaniem specjalnego prompta!
-    </div>
+
     <section class="gallery">
       <div class="gallery-title">Najlepsze prace AI <span style="font-size:0.9em; font-weight:400;">(galeria)</span></div>
       <div class="gallery-grid">
@@ -443,14 +350,17 @@ Czy taki układ i zawartość odpowiadają Twoim oczekiwaniom i mogę przejść 
         <img class="gallery-img" src="sonar2.png" data-full="sonar2.png" alt="praca AI 3">
       </div>
     </section>
+
     <section class="original-section">
       <div class="original-title">Oryginał</div>
       <img src="oryginal.png" alt="Oryginalna strona/screen" class="original-img">
     </section>
+
     <div class="download-block">
       <a class="download-link" href="staniow.zip" download>Pobierz plik: staniow.zip</a>
     </div>
   </main>
+
   <script>
     function copyPrompt() {
       const ta = document.getElementById("specialPrompt");
@@ -463,23 +373,23 @@ Czy taki układ i zawartość odpowiadają Twoim oczekiwaniom i mogę przejść 
       }, 1700);
     }
   </script>
+
   <!-- Modal na duże zdjęcie -->
-<div id="imgModal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(16,24,32,0.97); align-items:center; justify-content:center;">
-  <img id="modalImg" style="max-width:92vw; max-height:92vh; border-radius:15px; box-shadow:0 4px 32px #000;" alt="powiększone AI"/>
-</div>
-<script>
-document.querySelectorAll('.gallery-img').forEach(function(img) {
-  img.style.cursor = "pointer";
-  img.addEventListener('click', function() {
-    var src = img.getAttribute('data-full') || img.src;
-    document.getElementById('modalImg').src = src;
-    document.getElementById('imgModal').style.display = 'flex';
-  });
-});
-document.getElementById('imgModal').addEventListener('click', function(e) {
-  // Zamknij tylko gdy klikniesz poza obrazem
-  if (e.target === this) this.style.display = 'none';
-});
-</script>
+  <div id="imgModal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(16,24,32,0.97); align-items:center; justify-content:center;">
+    <img id="modalImg" style="max-width:92vw; max-height:92vh; border-radius:15px; box-shadow:0 4px 32px #000;" alt="powiększone AI"/>
+  </div>
+  <script>
+    document.querySelectorAll('.gallery-img').forEach(function(img) {
+      img.style.cursor = "pointer";
+      img.addEventListener('click', function() {
+        var src = img.getAttribute('data-full') || img.src;
+        document.getElementById('modalImg').src = src;
+        document.getElementById('imgModal').style.display = 'flex';
+      });
+    });
+    document.getElementById('imgModal').addEventListener('click', function(e) {
+      if (e.target === this) this.style.display = 'none';
+    });
+  </script>
 </body>
 </html>
