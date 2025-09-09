@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalkulator pola trójkąta</title>
+</head>
+<body>
+  <header>
+    <h1>Kalkulator pola trójkąta</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Oblicz pole trójkąta (podstawa i wysokość)</h2>
+      <form id="form-podstawa">
+        <label for="podstawa">Podstawa (a):</label>
+        <input type="number" id="podstawa" name="podstawa" step="any" required>
+        <label for="wysokosc">Wysokość (h):</label>
+        <input type="number" id="wysokosc" name="wysokosc" step="any" required>
+        <button type="button" onclick="obliczPolePodstawa()">Oblicz</button>
+      </form>
+      <p id="wynik-podstawa"></p>
+    </section>
+
+    <section>
+      <h2>Oblicz pole trójkąta (długości boków – wzór Herona)</h2>
+      <form id="form-boki">
+        <label for="bokA">Bok a:</label>
+        <input type="number" id="bokA" name="bokA" step="any" required>
+        <label for="bokB">Bok b:</label>
+        <input type="number" id="bokB" name="bokB" step="any" required>
+        <label for="bokC">Bok c:</label>
+        <input type="number" id="bokC" name="bokC" step="any" required>
+        <button type="button" onclick="obliczPoleHeron()">Oblicz</button>
+      </form>
+      <p id="wynik-boki"></p>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Kalkulator pola trójkąta
+  </footer>
+
+  <script>
+    function obliczPolePodstawa() {
+      const a = parseFloat(document.getElementById('podstawa').value);
+      const h = parseFloat(document.getElementById('wysokosc').value);
+      if (isNaN(a) || isNaN(h) || a <= 0 || h <= 0) {
+        document.getElementById('wynik-podstawa').textContent = 'Podaj poprawne wartości dodatnie.';
+        return;
+      }
+      const pole = 0.5 * a * h;
+      document.getElementById('wynik-podstawa').textContent = 'Pole trójkąta wynosi: ' + pole;
+    }
+
+    function obliczPoleHeron() {
+      const a = parseFloat(document.getElementById('bokA').value);
+      const b = parseFloat(document.getElementById('bokB').value);
+      const c = parseFloat(document.getElementById('bokC').value);
+      if (isNaN(a) || isNaN(b) || isNaN(c) || a <= 0 || b <= 0 || c <= 0) {
+        document.getElementById('wynik-boki').textContent = 'Podaj poprawne wartości dodatnie.';
+        return;
+      }
+      // Sprawdzenie warunku trójkąta
+      if (a + b <= c || a + c <= b || b + c <= a) {
+        document.getElementById('wynik-boki').textContent = 'Z tych boków nie da się zbudować trójkąta.';
+        return;
+      }
+      const p = (a + b + c) / 2;
+      const pole = Math.sqrt(p * (p - a) * (p - b) * (p - c));
+      document.getElementById('wynik-boki').textContent = 'Pole trójkąta wynosi: ' + pole;
+    }
+  </script>
+</body>
+</html>
